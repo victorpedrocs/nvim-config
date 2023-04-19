@@ -2,12 +2,16 @@
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set("n", "<leader>fe", vim.cmd.Ex) -- go back to file explorer
+-- go back to file explorer
+vim.keymap.set("n", "<leader>fe", vim.cmd.Ex, { desc = "[f]iles [e]xplorer" })
 
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")  -- move selection up with K
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")  -- move selection down with J
+-- move selection up with K
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Mode selection up" })
+-- move selection down with J
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Mode selection down" })
 
-vim.keymap.set("n", "J", "mzJ`z")             -- append line bellow to current, keep cursor where it is
+-- append line bellow to current, keep cursor where it is
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- keep the cursor at the center of screen when jumping up or down
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -17,14 +21,19 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "NzzzV")
 
-vim.keymap.set("x", "<leader>p", "\"_dP")          -- greatest remap ever
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "[p]aste over selection without replacing clipboard" })
 
-vim.keymap.set('v', '<leader>y', '"+y')            -- yank to the system clipboard
+-- yank to the system clipboard - not in use because clipboard is shared now
+-- vim.keymap.set('v', '<leader>y', '"+y')
 
-vim.keymap.set('n', '<leader>vs', '<C-w>v <C-w>w') -- vertical split and go to next split
-vim.keymap.set('n', '<leader>hs', '<C-w>s <C-w>w') --horizontal split and go to next split
+-- vertical split and go to next split
+vim.keymap.set('n', '<leader>vs', '<C-w>v <C-w>w')
+--horizontal split and go to next split
+vim.keymap.set('n', '<leader>hs', '<C-w>s <C-w>w')
 
-vim.keymap.set('n', '<leader>t', ':tabe<CR>')      -- open a new tab
+-- open a new tab
+vim.keymap.set('n', '<leader>t', ':tabe<CR>')
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

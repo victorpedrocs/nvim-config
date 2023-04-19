@@ -3,13 +3,20 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-	-- Auto-close brackets in input mode
-	'm4xshen/autoclose.nvim',
-	-- Primeagen's vim-be-good
-	'ThePrimeagen/vim-be-good',
-	-- Undotree: shows file modifications in a tree
-	'mbbill/undotree',
-	config = function()
-		vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-	end
+  -- Auto-close brackets in input mode
+  {
+    'windwp/nvim-autopairs',
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  },
+  -- Primeagen's vim-be-good
+  'ThePrimeagen/vim-be-good',
+  -- Undotree: shows file modifications in a tree
+  {
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    end
+  },
 }
