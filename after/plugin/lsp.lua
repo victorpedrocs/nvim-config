@@ -8,12 +8,20 @@ local on_attach = function(_, bufnr)
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+  local bind = function(mode, keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  local nmap = function(keys, func, desc)
+    bind('n', keys, func, desc)
+  end
+
+  local imap = function(keys, func, desc)
+    bind('i', keys, func, desc)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -29,6 +37,7 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  imap('<C-h>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -43,7 +52,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
   -- Keymap to format file using LSP
-  nmap('<leader>ff', vim.lsp.buf.format(), '[F]ormat [F]ile')
+  nmap('<leader>ff', vim.lsp.buf.format, '[F]ormat [F]ile')
 end
 
 -- Enable the following language servers
@@ -56,7 +65,21 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  cssls = {
+    filetypes = { "css" },
+    css = {
+      validate = true
+    },
+    less = {
+      validate = true
+    },
+    scss = {
+      validate = true
+    }
+  },
+  tsserver = {
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx"}
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
