@@ -1,3 +1,4 @@
+-- [[Fugitive config]]
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
 vim.keymap.set('n', '<leader>gb', function() vim.cmd.Git 'blame' end)
 vim.keymap.set('n', '<leader>gp', ':!git push -u origin $(git branch --show-current)<CR>',
