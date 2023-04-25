@@ -66,10 +66,17 @@ require('lazy').setup({
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
-      'rafamadriz/friendly-snippets',
       'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+    },
+  },
+  {
+    'L3MON4D3/LuaSnip',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      config = function()
+        require('luasnip.loaders.from_vscode').lazy_load()
+      end
     },
   },
 
