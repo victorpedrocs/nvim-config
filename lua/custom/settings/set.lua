@@ -60,7 +60,7 @@ vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 
 -- Highlight specified column
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
